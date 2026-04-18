@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9f7f4;
+    color: #0a0a0a;
+  }
+}
+
+@layer utilities {
+  .font-playwrite {
+    font-family: 'Playwrite NO', cursive;
+    font-optical-sizing: auto;
+  }
+
+  .font-cormorant {
+    font-family: 'Cormorant Garamond', serif;
+  }
+}
