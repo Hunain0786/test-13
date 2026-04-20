@@ -29,7 +29,7 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/40" />
 
                 {/* TEXT BLOCK — anchored bottom-left */}
-                <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-14 lg:px-20 pb-16 md:pb-24">
+                <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-14 lg:px-20 pb-24 md:pb-24">
                     <div className="flex items-flex-start gap-6 max-w-xl">
                         {/* Decorative vertical rule */}
                         <div className="hidden md:flex flex-col items-center gap-0 pt-1 shrink-0">
