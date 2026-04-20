@@ -61,7 +61,7 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
 
                             {/* Sub-tagline */}
                             <p
-                                className="font-cormorant text-[#d4c4aa] font-light italic leading-snug mb-3"
+                                className="font-cormorant text-[#f2e8d4] font-light italic leading-snug mb-3"
                                 style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)' }}
                             >
                                 Premium Fragrance
