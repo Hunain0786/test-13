@@ -47,12 +47,12 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
 
                             {/* Brand name */}
                             <h1
-                                className="font-cormorant text-[#f2e8d4] leading-none mb-4"
+                                className="font-playfair text-[#f2e8d4] leading-none mb-4"
                                 style={{
-                                    fontWeight: 200,
+                                    fontWeight: 500,
                                     fontSize: 'clamp(4rem, 9vw, 7rem)',
                                     textShadow: '0 4px 32px rgba(0,0,0,0.7)',
-                                    letterSpacing: '0.05em',
+                                    letterSpacing: '0.03em',
                                     marginBottom: '-9px',
                                 }}
                             >
