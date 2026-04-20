@@ -53,6 +53,7 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
                                     fontSize: 'clamp(4rem, 9vw, 7rem)',
                                     textShadow: '0 4px 32px rgba(0,0,0,0.7)',
                                     letterSpacing: '0.05em',
+                                    marginBottom: '-9px',
                                 }}
                             >
                                 AKR
