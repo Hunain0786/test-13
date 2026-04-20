@@ -3,10 +3,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
+import ProductDetail from './pages/ProductDetail';
 import { Page } from './types';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
 
   useEffect(() => {
     const path = window.location.hash.replace('#', '');
@@ -22,12 +24,21 @@ export default function App() {
     window.location.hash = page === 'home' ? '' : page;
   };
 
+  const openProduct = (productId: string) => {
+    setSelectedProductId(productId);
+    setCurrentPage('product');
+    window.location.hash = 'product';
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar currentPage={currentPage} onNavigate={navigate} />
       <main className="flex-1">
-        {currentPage === 'home' && <Home onNavigate={navigate} />}
-        {currentPage === 'shop' && <Shop />}
+        {currentPage === 'home' && <Home onNavigate={navigate} onProductClick={openProduct} />}
+        {currentPage === 'shop' && <Shop onNavigate={navigate} onProductClick={openProduct} />}
+        {currentPage === 'product' && selectedProductId && (
+          <ProductDetail productId={selectedProductId} onNavigate={navigate} onProductClick={openProduct} />
+        )}
       </main>
       <Footer onNavigate={navigate} />
     </div>

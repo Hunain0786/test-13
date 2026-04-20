@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { Product } from '../types';
+import { Page } from '../types';
 import ProductCard from '../components/ProductCard';
 import { LOCAL_PRODUCTS } from '../data/products';
 
@@ -13,7 +14,12 @@ const SORT_OPTIONS = [
     { label: 'Name A–Z', value: 'name_asc' },
 ];
 
-export default function Shop() {
+interface ShopProps {
+    onNavigate: (page: Page) => void;
+    onProductClick: (productId: string) => void;
+}
+
+export default function Shop({ onProductClick }: ShopProps) {
     const [category, setCategory] = useState('All');
     const [size, setSize] = useState('All');
     const [sort, setSort] = useState('featured');
@@ -174,7 +180,11 @@ export default function Shop() {
                 ) : (
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-8">
                         {products.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                onProductClick={onProductClick}
+                            />
                         ))}
                     </div>
                 )}

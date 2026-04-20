@@ -5,13 +5,14 @@ import { FEATURED_PRODUCTS } from '../data/products';
 
 interface HomeProps {
     onNavigate: (page: Page) => void;
+    onProductClick: (productId: string) => void;
 }
 
-export default function Home({ onNavigate }: HomeProps) {
+export default function Home({ onNavigate, onProductClick }: HomeProps) {
     return (
         <div className="bg-[#f9f7f4]">
             <section className="relative h-screen flex items-end overflow-hidden bg-[#0a0a0a]">
-                {/* Background image — slightly brighter so the bottle is more visible */}
+                {/* Background image */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
@@ -21,13 +22,13 @@ export default function Home({ onNavigate }: HomeProps) {
                     }}
                 />
 
-                {/* Left-to-right vignette — keeps left panel dark for legibility */}
+                {/* Left-to-right vignette */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/50 to-transparent" />
 
                 {/* Bottom fade */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/40" />
 
-                {/* ── TEXT BLOCK — anchored bottom-left ── */}
+                {/* TEXT BLOCK — anchored bottom-left */}
                 <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-14 lg:px-20 pb-16 md:pb-24">
                     <div className="flex items-flex-start gap-6 max-w-xl">
                         {/* Decorative vertical rule */}
@@ -51,7 +52,6 @@ export default function Home({ onNavigate }: HomeProps) {
                                 Premium Fragrance
                             </p>
 
-                            {/* Thin divider */}
                             <div className="w-10 h-px bg-[#c9a96e]/50 mb-4" />
 
                             <p className="text-[#8a7e70] text-[10px] md:text-xs font-light tracking-[0.35em] uppercase mb-8">
@@ -79,7 +79,7 @@ export default function Home({ onNavigate }: HomeProps) {
                     </div>
                 </div>
 
-                {/* Scroll indicator — right side, vertical */}
+                {/* Scroll indicator */}
                 <div className="absolute right-8 md:right-12 bottom-10 flex flex-col items-center gap-3 z-10">
                     <p className="text-[9px] tracking-[0.3em] uppercase text-[#4a4035] rotate-90 mb-2" style={{ writingMode: 'vertical-rl' }}>
                         Scroll
@@ -88,7 +88,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 </div>
             </section>
 
-            {/* ── PILLARS ──────────────────────────────────────────── */}
+            {/* ── PILLARS ── */}
             <section className="py-12 md:py-20 bg-[#0a0a0a]">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#1a1a1a]">
@@ -107,7 +107,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 </div>
             </section>
 
-            {/* ── FEATURED PRODUCTS ────────────────────────────────── */}
+            {/* ── FEATURED PRODUCTS ── */}
             <section id="featured-section" className="py-16 md:py-28 bg-[#f9f7f4]">
                 <div className="max-w-7xl mx-auto px-6 lg:px-12">
                     <div className="text-center mb-12 md:mb-14">
@@ -122,7 +122,11 @@ export default function Home({ onNavigate }: HomeProps) {
 
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                         {FEATURED_PRODUCTS.map((product) => (
-                            <ProductCard key={product.id} product={product} />
+                            <ProductCard
+                                key={product.id}
+                                product={product}
+                                onProductClick={onProductClick}
+                            />
                         ))}
                     </div>
 
@@ -138,7 +142,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 </div>
             </section>
 
-            {/* ── PHILOSOPHY ───────────────────────────────────────── */}
+            {/* ── PHILOSOPHY ── */}
             <section className="py-20 md:py-28 bg-[#0a0a0a] relative overflow-hidden">
                 <img
                     src="/WhatsApp_Image_2026-04-16_at_11.10.31_PM_(1).jpeg"
@@ -160,7 +164,7 @@ export default function Home({ onNavigate }: HomeProps) {
                 </div>
             </section>
 
-            {/* ── NEWSLETTER ───────────────────────────────────────── */}
+            {/* ── NEWSLETTER ── */}
             <section className="py-20 md:py-28 bg-[#f5f0e8]">
                 <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
                     <p className="text-[10px] tracking-[0.4em] uppercase text-[#9a8c7e] mb-4 font-light">
