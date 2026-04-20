@@ -12,56 +12,75 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
     return (
         <div className="bg-[#f9f7f4]">
             <section className="relative h-screen flex items-end overflow-hidden bg-[#0a0a0a]">
-                {/* Background image */}
+                {/* Hero image — served from /public */}
                 <div
                     className="absolute inset-0 bg-cover bg-center"
                     style={{
-                        backgroundImage:
-                            'url(https://images.pexels.com/photos/1961795/pexels-photo-1961795.jpeg?auto=compress&cs=tinysrgb&w=1600)',
-                        opacity: 0.55,
+                        backgroundImage: 'url(/hero-image.jpg)',
+                        opacity: 0.6,
                     }}
                 />
 
-                {/* Left-to-right vignette */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/50 to-transparent" />
+                {/* Mobile: dark full overlay so centered text is always readable */}
+                <div className="absolute inset-0 bg-[#0a0a0a]/55 md:hidden" />
 
-                {/* Bottom fade */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/40" />
+                {/* Desktop: directional left vignette */}
+                <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/70 to-[#0a0a0a]/5" />
 
-                {/* TEXT BLOCK — anchored bottom-left */}
-                <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-14 lg:px-20 pb-24 md:pb-24">
-                    <div className="flex items-flex-start gap-6 max-w-xl mb-20">
-                        {/* Decorative vertical rule */}
-                        <div className="hidden md:flex flex-col items-center gap-0 pt-1 shrink-0">
-                            <div className="w-px h-24 bg-gradient-to-b from-transparent via-[#c9a96e] to-[#c9a96e]/30" />
-                        </div>
+                {/* Shared top + bottom fades */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/50" />
 
-                        <div>
-                            <p className="text-[10px] tracking-[0.45em] uppercase text-[#c9a96e] mb-4 font-light">
-                                Est. 2024
+                {/* ── TEXT BLOCK ────────────────────────────────────── */}
+                <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-14 lg:px-20 pb-20 md:pb-28">
+
+                    {/* Mobile: centered | Desktop: left with gold rule */}
+                    <div className="flex items-start gap-5 max-w-lg mx-auto md:mx-0">
+
+                        {/* Gold vertical rule — desktop only */}
+                        <div className="hidden md:block w-px self-stretch shrink-0 bg-gradient-to-b from-transparent via-[#c9a96e]/80 to-transparent" />
+
+                        <div className="w-full text-center md:text-left">
+                            {/* Eyebrow */}
+                            <p className="text-[10px] tracking-[0.55em] uppercase text-[#c9a96e] mb-5 font-light">
+                                Est. 2024 · Premium Attar & Perfumes
                             </p>
 
+                            {/* Brand name */}
                             <h1
-                                className="font-playwrite text-[#e8dcc8] mb-3 leading-none"
-                                style={{ fontWeight: 200, fontSize: 'clamp(3rem, 7vw, 6rem)' }}
+                                className="font-playwrite text-[#f2e8d4] leading-none mb-4"
+                                style={{
+                                    fontWeight: 200,
+                                    fontSize: 'clamp(4rem, 9vw, 7rem)',
+                                    textShadow: '0 4px 32px rgba(0,0,0,0.7)',
+                                    letterSpacing: '0.05em',
+                                }}
                             >
                                 AKR
                             </h1>
 
-                            <p className="font-cormorant text-[#d4c4aa] text-2xl md:text-3xl lg:text-4xl font-light italic mb-3 leading-snug">
+                            {/* Sub-tagline */}
+                            <p
+                                className="font-cormorant text-[#d4c4aa] font-light italic leading-snug mb-3"
+                                style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)' }}
+                            >
                                 Premium Fragrance
                             </p>
 
-                            <div className="w-10 h-px bg-[#c9a96e]/50 mb-4" />
+                            {/* Animated gold hairline */}
+                            <div className="flex justify-center md:justify-start mb-5">
+                                <div className="h-px bg-gradient-to-r from-transparent via-[#c9a96e] to-transparent w-32 md:w-20" />
+                            </div>
 
-                            <p className="text-[#8a7e70] text-[10px] md:text-xs font-light tracking-[0.35em] uppercase mb-8">
+                            {/* Tagline */}
+                            <p className="text-[#9a8c7e] text-[10px] md:text-[11px] font-light tracking-[0.5em] uppercase mb-10">
                                 The art of extraordinary scent
                             </p>
 
-                            <div className="flex flex-col sm:flex-row items-start gap-3">
+                            {/* CTAs */}
+                            <div className="flex flex-col sm:flex-row items-center md:items-start justify-center md:justify-start gap-3">
                                 <button
                                     onClick={() => onNavigate('shop')}
-                                    className="group flex items-center gap-3 bg-[#e8dcc8] text-[#0a0a0a] px-8 py-3.5 text-[10px] tracking-[0.28em] uppercase font-light hover:bg-white transition-all duration-300"
+                                    className="group w-full sm:w-auto flex items-center justify-center gap-3 bg-[#e8dcc8] text-[#0a0a0a] px-8 py-3.5 text-[10px] tracking-[0.3em] uppercase font-light hover:bg-white transition-all duration-300"
                                 >
                                     Explore Collection
                                     <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -70,7 +89,7 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
                                     onClick={() =>
                                         document.getElementById('featured-section')?.scrollIntoView({ behavior: 'smooth' })
                                     }
-                                    className="flex items-center gap-3 text-[#a89880] border border-[#3a3028] px-8 py-3.5 text-[10px] tracking-[0.28em] uppercase font-light hover:border-[#c9a96e] hover:text-[#c9a96e] transition-all duration-300"
+                                    className="w-full sm:w-auto text-[#a89880] border border-[#3a3028] px-8 py-3.5 text-[10px] tracking-[0.3em] uppercase font-light hover:border-[#c9a96e] hover:text-[#c9a96e] transition-all duration-300"
                                 >
                                     Featured Scents
                                 </button>
@@ -79,12 +98,12 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
                     </div>
                 </div>
 
-                {/* Scroll indicator */}
-                <div className="absolute right-8 md:right-12 bottom-10 flex flex-col items-center gap-3 z-10">
-                    <p className="text-[9px] tracking-[0.3em] uppercase text-[#4a4035] rotate-90 mb-2" style={{ writingMode: 'vertical-rl' }}>
+                {/* Scroll indicator — right side, hidden on mobile */}
+                <div className="absolute right-8 md:right-12 bottom-10 hidden md:flex flex-col items-center gap-2 z-10">
+                    <p className="text-[9px] tracking-[0.35em] uppercase text-[#3a342d] font-light" style={{ writingMode: 'vertical-rl' }}>
                         Scroll
                     </p>
-                    <div className="w-px h-12 bg-gradient-to-b from-[#4a4035] to-transparent animate-pulse" />
+                    <div className="w-px h-10 bg-gradient-to-b from-[#4a4035] to-transparent animate-pulse mt-2" />
                 </div>
             </section>
 
