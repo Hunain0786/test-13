@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import { Page } from '../types';
+import { useCart } from '../context/CartContext';
 
 interface NavbarProps {
   currentPage: Page;
@@ -10,6 +11,7 @@ interface NavbarProps {
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { totalItems } = useCart();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -67,11 +69,16 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
           <div className="flex items-center gap-4">
             <button
-              onClick={() => handleNav('shop')}
-              className="text-[#a89880] hover:text-[#e8dcc8] transition-colors duration-300"
-              aria-label="Shop"
+              onClick={() => handleNav('cart')}
+              className="relative text-[#a89880] hover:text-[#e8dcc8] transition-colors duration-300"
+              aria-label="Cart"
             >
               <ShoppingBag size={18} strokeWidth={1.5} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 w-4 h-4 flex items-center justify-center bg-[#c9a96e] text-[#0a0a0a] text-[9px] font-light rounded-full">
+                  {totalItems > 9 ? '9+' : totalItems}
+                </span>
+              )}
             </button>
 
             <button

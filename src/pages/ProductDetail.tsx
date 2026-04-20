@@ -1,8 +1,9 @@
 import { useState, useMemo } from 'react';
-import { ArrowLeft, Star, ShoppingBag, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
+import { ArrowLeft, Star, ShoppingBag, Minus, Plus, ChevronDown, ChevronUp, Check } from 'lucide-react';
 import { Page } from '../types';
 import { LOCAL_PRODUCTS } from '../data/products';
 import ProductCard from '../components/ProductCard';
+import { useCart } from '../context/CartContext';
 
 // ── Static mock reviews per product ──────────────────────────────────────────
 const REVIEWS: Record<string, { name: string; rating: number; date: string; body: string }[]> = {
@@ -68,6 +69,21 @@ export default function ProductDetail({ productId, onNavigate, onProductClick }:
   const [qty, setQty] = useState(1);
   const [expandDesc, setExpandDesc] = useState(false);
   const [activeTab, setActiveTab] = useState<'ingredients' | 'reviews'>('ingredients');
+  const [addedFeedback, setAddedFeedback] = useState(false);
+  const { addToCart } = useCart();
+
+  const handleAddToCart = () => {
+    if (!product || !product.in_stock) return;
+    addToCart(product.id, qty);
+    setAddedFeedback(true);
+    setTimeout(() => setAddedFeedback(false), 2000);
+  };
+
+  const handleBuyNow = () => {
+    if (!product || !product.in_stock) return;
+    addToCart(product.id, qty);
+    onNavigate('cart');
+  };
 
   const reviews = REVIEWS[productId] ?? [];
   const notes = NOTE_DETAILS[productId];
@@ -204,13 +220,22 @@ export default function ProductDetail({ productId, onNavigate, onProductClick }:
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3">
               <button
+                onClick={handleAddToCart}
                 disabled={!product.in_stock}
-                className="flex-1 flex items-center justify-center gap-3 bg-[#0a0a0a] text-[#e8dcc8] py-4 text-[10px] tracking-[0.3em] uppercase font-light hover:bg-[#1a1a1a] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
+                className={`flex-1 flex items-center justify-center gap-3 py-4 text-[10px] tracking-[0.3em] uppercase font-light disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300 ${
+                  addedFeedback
+                    ? 'bg-[#6b5f50] text-[#e8dcc8]'
+                    : 'bg-[#0a0a0a] text-[#e8dcc8] hover:bg-[#1a1a1a]'
+                }`}
               >
-                <ShoppingBag size={14} strokeWidth={1.5} />
-                {product.in_stock ? 'Add to Bag' : 'Out of Stock'}
+                {addedFeedback ? (
+                  <><Check size={14} strokeWidth={2} /> Added to Bag</>
+                ) : (
+                  <><ShoppingBag size={14} strokeWidth={1.5} /> {product.in_stock ? 'Add to Bag' : 'Out of Stock'}</>
+                )}
               </button>
               <button
+                onClick={handleBuyNow}
                 disabled={!product.in_stock}
                 className="flex-1 py-4 text-[10px] tracking-[0.3em] uppercase font-light border border-[#0a0a0a] text-[#0a0a0a] hover:bg-[#0a0a0a] hover:text-[#e8dcc8] disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-300"
               >

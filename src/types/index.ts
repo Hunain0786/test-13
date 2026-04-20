@@ -13,4 +13,4 @@ export interface Product {
   created_at: string;
 }
 
-export type Page = 'home' | 'shop' | 'product';
+export type Page = 'home' | 'shop' | 'product' | 'cart';

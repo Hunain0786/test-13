@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetail from './pages/ProductDetail';
+import Cart from './pages/Cart';
 import { Page } from './types';
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
   useEffect(() => {
     const path = window.location.hash.replace('#', '');
     if (path === 'shop') setCurrentPage('shop');
+    if (path === 'cart') setCurrentPage('cart');
   }, []);
 
   useEffect(() => {
@@ -38,6 +40,9 @@ export default function App() {
         {currentPage === 'shop' && <Shop onNavigate={navigate} onProductClick={openProduct} />}
         {currentPage === 'product' && selectedProductId && (
           <ProductDetail productId={selectedProductId} onNavigate={navigate} onProductClick={openProduct} />
+        )}
+        {currentPage === 'cart' && (
+          <Cart onNavigate={navigate} onProductClick={openProduct} />
         )}
       </main>
       <Footer onNavigate={navigate} />
