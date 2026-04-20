@@ -10,53 +10,81 @@ interface HomeProps {
 export default function Home({ onNavigate }: HomeProps) {
     return (
         <div className="bg-[#f9f7f4]">
-            <section className="relative h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+            <section className="relative h-screen flex items-end overflow-hidden bg-[#0a0a0a]">
+                {/* Background image — slightly brighter so the bottle is more visible */}
                 <div
-                    className="absolute inset-0 bg-cover bg-center opacity-40"
+                    className="absolute inset-0 bg-cover bg-center"
                     style={{
                         backgroundImage:
                             'url(https://images.pexels.com/photos/1961795/pexels-photo-1961795.jpeg?auto=compress&cs=tinysrgb&w=1600)',
+                        opacity: 0.55,
                     }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/20 to-[#0a0a0a]/85" />
 
-                <div className="relative z-10 text-center px-6 max-w-4xl mx-auto py-16 md:py-0">
-                    <p className="text-[10px] md:text-[11px] tracking-[0.4em] uppercase text-[#a89880] mb-4 md:mb-6 font-light">
-                        Est. 2024
-                    </p>
-                    <h1
-                        className="font-playwrite text-[#e8dcc8] mb-4 md:mb-6 leading-tight"
-                        style={{ fontWeight: 200, fontSize: 'clamp(2rem, 6vw, 5rem)' }}
-                    >
-                        AKR
-                    </h1>
-                    <p className="font-cormorant text-[#c4b49a] text-xl md:text-3xl lg:text-4xl font-light italic mb-3 md:mb-4 leading-relaxed">
-                        Premium Fragrance
-                    </p>
-                    <p className="text-[#7a6e60] text-xs md:text-base font-light tracking-widest uppercase mb-8 md:mb-12">
-                        The art of extraordinary scent
-                    </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-4">
-                        <button
-                            onClick={() => onNavigate('shop')}
-                            className="group flex items-center gap-3 bg-[#e8dcc8] text-[#0a0a0a] px-7 py-3 md:px-8 md:py-4 text-xs tracking-[0.25em] uppercase font-light hover:bg-white transition-all duration-300"
-                        >
-                            Explore Collection
-                            <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
-                        </button>
-                        <button
-                            onClick={() =>
-                                document.getElementById('featured-section')?.scrollIntoView({ behavior: 'smooth' })
-                            }
-                            className="text-[#6b5f50] border border-[#2e2820] px-7 py-3 md:px-8 md:py-4 text-xs tracking-[0.25em] uppercase font-light hover:border-[#e8dcc8] hover:text-[#e8dcc8] transition-all duration-300"
-                        >
-                            Featured Scents
-                        </button>
+                {/* Left-to-right vignette — keeps left panel dark for legibility */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/50 to-transparent" />
+
+                {/* Bottom fade */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-[#0a0a0a]/40" />
+
+                {/* ── TEXT BLOCK — anchored bottom-left ── */}
+                <div className="relative z-10 w-full max-w-7xl mx-auto px-8 md:px-14 lg:px-20 pb-16 md:pb-24">
+                    <div className="flex items-flex-start gap-6 max-w-xl">
+                        {/* Decorative vertical rule */}
+                        <div className="hidden md:flex flex-col items-center gap-0 pt-1 shrink-0">
+                            <div className="w-px h-24 bg-gradient-to-b from-transparent via-[#c9a96e] to-[#c9a96e]/30" />
+                        </div>
+
+                        <div>
+                            <p className="text-[10px] tracking-[0.45em] uppercase text-[#c9a96e] mb-4 font-light">
+                                Est. 2024
+                            </p>
+
+                            <h1
+                                className="font-playwrite text-[#e8dcc8] mb-3 leading-none"
+                                style={{ fontWeight: 200, fontSize: 'clamp(3rem, 7vw, 6rem)' }}
+                            >
+                                AKR
+                            </h1>
+
+                            <p className="font-cormorant text-[#d4c4aa] text-2xl md:text-3xl lg:text-4xl font-light italic mb-3 leading-snug">
+                                Premium Fragrance
+                            </p>
+
+                            {/* Thin divider */}
+                            <div className="w-10 h-px bg-[#c9a96e]/50 mb-4" />
+
+                            <p className="text-[#8a7e70] text-[10px] md:text-xs font-light tracking-[0.35em] uppercase mb-8">
+                                The art of extraordinary scent
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row items-start gap-3">
+                                <button
+                                    onClick={() => onNavigate('shop')}
+                                    className="group flex items-center gap-3 bg-[#e8dcc8] text-[#0a0a0a] px-8 py-3.5 text-[10px] tracking-[0.28em] uppercase font-light hover:bg-white transition-all duration-300"
+                                >
+                                    Explore Collection
+                                    <ArrowRight size={13} className="transition-transform duration-300 group-hover:translate-x-1" />
+                                </button>
+                                <button
+                                    onClick={() =>
+                                        document.getElementById('featured-section')?.scrollIntoView({ behavior: 'smooth' })
+                                    }
+                                    className="flex items-center gap-3 text-[#a89880] border border-[#3a3028] px-8 py-3.5 text-[10px] tracking-[0.28em] uppercase font-light hover:border-[#c9a96e] hover:text-[#c9a96e] transition-all duration-300"
+                                >
+                                    Featured Scents
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div className="absolute bottom-8 md:bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
-                    <div className="w-px h-6 md:h-8 bg-gradient-to-b from-transparent to-[#6b5f50]" />
+                {/* Scroll indicator — right side, vertical */}
+                <div className="absolute right-8 md:right-12 bottom-10 flex flex-col items-center gap-3 z-10">
+                    <p className="text-[9px] tracking-[0.3em] uppercase text-[#4a4035] rotate-90 mb-2" style={{ writingMode: 'vertical-rl' }}>
+                        Scroll
+                    </p>
+                    <div className="w-px h-12 bg-gradient-to-b from-[#4a4035] to-transparent animate-pulse" />
                 </div>
             </section>
 
