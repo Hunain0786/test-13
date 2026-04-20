@@ -39,7 +39,7 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
                         {/* Gold vertical rule — desktop only */}
                         <div className="hidden md:block w-px self-stretch shrink-0 bg-gradient-to-b from-transparent via-[#c9a96e]/80 to-transparent" />
 
-                        <div className="w-full text-center md:text-left">
+                        <div className="w-full text-center md:text-left mb-12">
                             {/* Eyebrow */}
                             <p className="text-[10px] tracking-[0.55em] uppercase text-[#c9a96e] mb-5 font-light">
                                 Est. 2024 · Premium Attar & Perfumes
@@ -47,7 +47,7 @@ export default function Home({ onNavigate, onProductClick }: HomeProps) {
 
                             {/* Brand name */}
                             <h1
-                                className="font-playwrite text-[#f2e8d4] leading-none mb-4"
+                                className="font-cormorant text-[#f2e8d4] leading-none mb-4"
                                 style={{
                                     fontWeight: 200,
                                     fontSize: 'clamp(4rem, 9vw, 7rem)',
